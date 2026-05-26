@@ -8,34 +8,28 @@
 </head>
 <body>
 
-    <!-- Kanvas untuk partikel aura kosmik -->
     <canvas id="particleCanvas"></canvas>
     
-    <!-- Efek kilatan petir/strobe -->
     <div class="flash-overlay" id="flashOverlay"></div>
 
     <div class="universe">
         <h1 class="hyper-title" data-text="AMBA: OVERLORD">AMBA: OVERLORD</h1>
         
-        <!-- Portal Tempat Amba Bersemayam -->
         <div class="portal-wrapper" id="portalWrapper">
             <div class="portal-ring"></div>
             <div class="portal-ring ring-reverse"></div>
             <div class="amba-frame">
-                <!-- Ganti URL ini dengan foto Amba andalanmu -->
-                <img src="ambatukam.jpgfit=crop" id="ambaGod" class="amba-asset" alt="Amba God Mode">
+                <img src="ambatukam.jpg" id="ambaGod" class="amba-asset" alt="Amba God Mode">
                 <div class="glitch-slice"></div>
             </div>
         </div>
 
-        <!-- Kontrol Konten -->
         <div class="control-panel">
             <button id="ascendBtn" class="btn-ultra">BUKA GERBANG DIMENSI!</button>
             <p class="status-text">Status Dimensi: <span id="statusLabel" class="neon-green">STABIL</span></p>
         </div>
     </div>
 
-    <!-- Audio (Opsional, otomatis menyesuaikan guncangan) -->
     <audio id="cosmicSound" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" loop></audio>
 
     <script src="script.js"></script>
