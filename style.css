@@ -1,0 +1,227 @@
+:root {
+    --glow-color: #00ffff;
+    --secondary-glow: #ff00ff;
+    --mouseX: 0deg;
+    --mouseY: 0deg;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #020208;
+    color: #fff;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    perspective: 1000px;
+}
+
+/* Kanvas Partikel Latar Belakang */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Flash Screen saat mode dewa aktif */
+.flash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    z-index: 99;
+    pointer-events: none;
+}
+
+/* Wadah Utama dengan Efek Parallax Kursor */
+.universe {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: rotateX(var(--mouseY)) rotateY(var(--mouseX));
+    transition: transform 0.1s ease-out;
+}
+
+/* Judul dengan Efek Glitch konstan */
+.hyper-title {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: #fff;
+    text-shadow: 0 0 20px var(--glow-color);
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.hyper-title::before, .hyper-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #020208;
+}
+
+.hyper-title::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff0055;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.hyper-title::after {
+    left: -2px;
+    text-shadow: -2px 0 #00ffff;
+    clip: rect(85px, 450px, 140px, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+/* Portal Utama Amba */
+.portal-wrapper {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.portal-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px dashed var(--glow-color);
+    border-radius: 50%;
+    box-shadow: 0 0 30px var(--glow-color);
+    animation: spin 10s linear infinite;
+}
+
+.ring-reverse {
+    width: 115%;
+    height: 115%;
+    border: 2px dotted var(--secondary-glow);
+    box-shadow: 0 0 40px var(--secondary-glow);
+    animation: spin-reverse 6s linear infinite;
+}
+
+/* Frame Foto Amba */
+.amba-frame {
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid #fff;
+    box-shadow: inset 0 0 50px #000, 0 0 30px rgba(255,255,255,0.5);
+    position: relative;
+}
+
+.amba-asset {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+}
+
+/* Kontrol Panel */
+.control-panel {
+    text-align: center;
+}
+
+.btn-ultra {
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background: transparent;
+    border: 2px solid var(--glow-color);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.btn-ultra:hover {
+    background: var(--glow-color);
+    color: #000;
+    box-shadow: 0 0 40px var(--glow-color);
+    text-shadow: none;
+}
+
+.status-text {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.neon-green { color: #00ffcc; text-shadow: 0 0 10px #00ffcc; }
+.neon-red { color: #ff0055; text-shadow: 0 0 20px #ff0055; }
+
+/* =======================================================
+   ANIMASI DI LUAR NALAR LEVEL EKSTREM
+   ======================================================= */
+
+.hyper-shake {
+    animation: extreme-shake 0.05s infinite alternate !important;
+}
+
+.god-ascension {
+    animation: hyper-rotation 0.4s infinite linear, color-distortion 0.2s infinite alternate;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+
+@keyframes extreme-shake {
+    0% { transform: translate(8px, -8px) rotate(2deg) scale(1.05); }
+    100% { transform: translate(-8px, 8px) rotate(-2deg) scale(0.95); }
+}
+
+@keyframes hyper-rotation {
+    0% { transform: scale(1.2) rotate3d(1, 1, 1, 0deg); filter: saturate(200%); }
+    100% { transform: scale(1.6) rotate3d(1, 1, 1, 360deg); filter: saturate(1000%) hue-rotate(360deg); }
+}
+
+@keyframes color-distortion {
+    0% { filter: invert(0) contrast(150%); }
+    100% { filter: invert(1) contrast(300%) brightness(1.5); }
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(15px, 9999px, 66px, 0); }
+    100% { clip: rect(34px, 9999px, 55px, 0); }
+}
+
+/* Teks mengambang dinamis */
+.floating-word {
+    position: absolute;
+    font-family: 'Impact', sans-serif;
+    pointer-events: none;
+    z-index: 10;
+    animation: floatUp 1.5s forwards cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-300px) scale(2.5) rotate(180deg); opacity: 0; }
+}
